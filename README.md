@@ -1,1 +1,581 @@
-Design system for Renuka Savangikar personal branding - Webiste , POrtoflio PDF , CV & business card
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Renuka Savangikar — Design System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Playfair+Display:ital@1&family=Space+Mono&display=swap');
+
+  :root{
+    --ink:#161616;
+    --paper:#f2f1ee;
+    --paper-2:#ffffff;
+    --line:#161616;
+    --line-soft:#cfcdc6;
+    --coral:#e2554f;
+    --amber:#e8b23d;
+    --teal:#3f8f95;
+    --grad: linear-gradient(90deg, var(--coral) 0%, var(--amber) 50%, var(--teal) 100%);
+    --label:#3a3a3a;
+    --display: 'Archivo Black', sans-serif;
+    --sans: 'Archivo', sans-serif;
+    --serif-italic: 'Playfair Display', serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px 120px;}
+
+  header.top{
+    border-bottom:2px solid var(--ink);
+    background:var(--paper-2);
+    padding:28px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  header.top .name{font-family:var(--sans); font-weight:700; letter-spacing:.06em; font-size:13px;}
+  header.top .docs{font-family:var(--sans); font-weight:600; letter-spacing:.08em; font-size:11px; color:var(--label);}
+
+  .intro{padding:72px 32px 40px; max-width:1160px; margin:0 auto;}
+  .intro .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--teal); text-transform:uppercase; margin-bottom:14px;}
+  .intro h1{font-family:var(--display); font-size:52px; margin:0 0 6px; line-height:1.05;}
+  .intro .sub{font-family:var(--serif-italic); font-style:italic; font-size:30px; color:var(--ink); margin:0 0 18px;}
+  .intro p.desc{max-width:620px; color:var(--label); font-size:15px;}
+
+  section{margin:64px 0;}
+  h2.sec-title{
+    font-family:var(--display);
+    font-size:22px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    margin:0 0 6px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--ink);
+  }
+  p.sec-note{font-size:13px; color:var(--label); margin:10px 0 28px; max-width:680px;}
+
+  /* COLOR */
+  .swatches{display:grid; grid-template-columns:repeat(6,1fr); gap:16px;}
+  .swatch{border:1px solid var(--line-soft);}
+  .swatch .fill{height:88px;}
+  .swatch .meta{padding:10px 12px; background:var(--paper-2); border-top:1px solid var(--line-soft);}
+  .swatch .meta .nm{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;}
+  .swatch .meta .hx{font-family:var(--mono); font-size:11px; color:var(--label); margin-top:2px;}
+
+  .gradient-bar{height:54px; border-radius:27px; background:var(--grad); margin-top:24px;}
+  .gradient-label{font-family:var(--mono); font-size:11px; color:var(--label); margin-top:10px; letter-spacing:.04em;}
+
+  /* TYPE */
+  .type-row{display:flex; align-items:baseline; justify-content:space-between; padding:18px 0; border-bottom:1px solid var(--line-soft); gap:24px;}
+  .type-row:last-child{border-bottom:none;}
+  .type-sample.display{font-family:var(--display); font-size:44px; line-height:1;}
+  .type-sample.italic{font-family:var(--serif-italic); font-style:italic; font-size:36px;}
+  .type-sample.h2s{font-family:var(--sans); font-weight:700; font-size:24px;}
+  .type-sample.body{font-family:var(--sans); font-weight:400; font-size:16px;}
+  .type-sample.label{font-family:var(--sans); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.1em;}
+  .type-sample.mono{font-family:var(--mono); font-size:13px;}
+  .type-meta{font-family:var(--mono); font-size:11px; color:var(--label); white-space:nowrap; text-align:right;}
+  .type-meta .role{display:block; font-weight:700; color:var(--ink); font-size:11px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;}
+
+  /* SPACING / GRID */
+  .scale-list{display:flex; gap:18px; align-items:flex-end; flex-wrap:wrap;}
+  .scale-item{display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .scale-item .bar{background:var(--ink); width:28px;}
+  .scale-item .lbl{font-family:var(--mono); font-size:11px; color:var(--label);}
+
+  .grid-demo{display:grid; grid-template-columns:repeat(12,1fr); gap:8px; height:64px;}
+  .grid-demo div{background:rgba(63,143,149,.18); border:1px dashed var(--teal);}
+
+  /* COMPONENTS */
+  .comp-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .comp-card{border:1px solid var(--ink); padding:28px; background:var(--paper-2);}
+  .comp-card .cap{font-family:var(--mono); font-size:11px; color:var(--label); margin-bottom:16px; text-transform:uppercase; letter-spacing:.06em;}
+
+  .nav-demo{display:flex; justify-content:space-between; align-items:center; border:1px solid var(--ink); padding:18px 22px; background:var(--paper-2);}
+  .nav-demo .lg{font-weight:700; font-size:12px; letter-spacing:.06em;}
+  .nav-demo .lk{font-family:var(--sans); font-weight:600; font-size:11px; letter-spacing:.08em; text-transform:uppercase;}
+
+  .btn-link{display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:15px; color:var(--ink); text-decoration:none;}
+  .btn-link .arrow{font-size:18px;}
+
+  .badge-circle{width:64px; height:64px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px;}
+
+  .icon-row{display:flex; flex-direction:column; gap:18px; align-items:center;}
+  .icon-row .ic{font-size:20px;}
+  .ic.star{color:var(--coral);}
+  .ic.tri{color:var(--amber);}
+  .ic.pen{color:var(--teal);}
+
+  .label-pill{font-family:var(--sans); font-weight:600; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--teal);}
+
+  .marquee-demo{overflow:hidden; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); padding:12px 0;}
+  .marquee-demo .track{font-family:var(--sans); font-weight:600; font-size:11px; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; color:var(--label);}
+
+  .img-card{border:1px solid var(--ink); background:var(--paper-2); padding:0;}
+  .img-card .ph{height:160px; background:repeating-linear-gradient(45deg, #e3e1da 0 10px, #ece9e2 10px 20px); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px; color:var(--label);}
+  .img-card .cap-row{display:flex; justify-content:space-between; align-items:center; padding:14px 16px;}
+
+  /* MOTION */
+  .motion-card{border:1px solid var(--ink); padding:24px; background:var(--paper-2); display:flex; align-items:center; gap:20px;}
+  .motion-card .mlabel{font-family:var(--mono); font-size:11px; color:var(--label);}
+  .pulse-dot{width:14px; height:14px; border-radius:50%; background:var(--coral); animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1; transform:scale(1);}50%{opacity:.4; transform:scale(.7);}}
+
+  table.tokens{width:100%; border-collapse:collapse; font-size:13px;}
+  table.tokens th, table.tokens td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line-soft);}
+  table.tokens th{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--label);}
+  table.tokens td.mono{font-family:var(--mono); font-size:12px;}
+
+  footer.foot{border-top:2px solid var(--ink); margin-top:80px; padding:24px 32px; font-family:var(--mono); font-size:11px; color:var(--label); display:flex; justify-content:space-between;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="name">RENUKA SAVANGIKAR</div>
+  <div class="docs">DESIGN SYSTEM · v1.0</div>
+</header>
+
+<div class="intro">
+  <div class="kicker">Visual identity reference</div>
+  <h1>Blending</h1>
+  <div class="sub">Creativity &amp; Curiosity *</div>
+  <p class="desc">Tokens, type, components and patterns extracted from the live portfolio site, documented for reuse across pages, case studies and future builds.</p>
+</div>
+
+<div class="wrap">
+
+  <section id="color">
+    <h2 class="sec-title">01 — Colour</h2>
+    <p class="sec-note">A near-white paper ground with full-black ink for type and rules. Three accent hues — coral, amber, teal — appear together only in the signature gradient bar, and singly as icon colour.</p>
+
+    <div class="swatches">
+      <div class="swatch"><div class="fill" style="background:#161616;"></div><div class="meta"><div class="nm">Ink</div><div class="hx">#161616</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#f2f1ee;"></div><div class="meta"><div class="nm">Paper</div><div class="hx">#F2F1EE</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#ffffff; border-bottom:1px solid #cfcdc6;"></div><div class="meta"><div class="nm">Paper 2</div><div class="hx">#FFFFFF</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#e2554f;"></div><div class="meta"><div class="nm">Coral</div><div class="hx">#E2554F</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#e8b23d;"></div><div class="meta"><div class="nm">Amber</div><div class="hx">#E8B23D</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#3f8f95;"></div><div class="meta"><div class="nm">Teal</div><div class="hx">#3F8F95</div></div></div>
+    </div>
+
+    <div class="gradient-bar"></div>
+    <div class="gradient-label">Signature gradient — linear-gradient(90deg, #E2554F 0%, #E8B23D 50%, #3F8F95 100%) — used as a headline divider pill, and full-bleed as the footer background</div>
+  </section>
+
+  <section id="type">
+    <h2 class="sec-title">02 — Typography</h2>
+    <p class="sec-note">Three families, three jobs: a heavy black grotesk for display weight, an italic serif for warmth on emphasised words, and the body grotesk for everything functional. A monospace utility face marks metadata.</p>
+
+    <div class="type-row">
+      <div class="type-sample display">Blending</div>
+      <div class="type-meta"><span class="role">Display / Archivo Black</span>96–110px desktop, 1.0 line-height, set tight</div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample italic">Creativity &amp; Curiosity</div>
+      <div class="type-meta"><span class="role">Accent / Playfair Display Italic</span>56–64px, reserved for emphasised phrase only</div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample h2s">Section Heading</div>
+      <div class="type-meta"><span class="role">Heading / Archivo 700</span>20–28px, uppercase optional</div>
+    </div>
+    <div class="type-sample body" style="padding:18px 0; border-bottom:1px solid var(--line-soft);">Body copy sits quietly under the headline — Archivo Regular at 15–16px, generous line height, muted ink for secondary text.</div>
+    <div class="type-row">
+      <div class="type-sample label">Multi-Disciplinary Designer</div>
+      <div class="type-meta"><span class="role">Eyebrow label / Archivo 600</span>11–12px, +10% letter-spacing, uppercase</div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample mono">2026 · WORK . ABOUT . CONTACT</div>
+      <div class="type-meta"><span class="role">Utility / Mono or tracked sans</span>nav links &amp; date stamps, 11px</div>
+    </div>
+  </section>
+
+  <section id="grid">
+    <h2 class="sec-title">03 — Layout &amp; Spacing</h2>
+    <p class="sec-note">12-column grid, 1160–1280px max content width, hairline 1–2px rules used as structural dividers rather than shadows or cards.</p>
+    <div class="grid-demo">
+      <div style="grid-column:1/3;"></div>
+      <div style="grid-column:3/9;"></div>
+      <div style="grid-column:9/11;"></div>
+      <div style="grid-column:11/13;"></div>
+    </div>
+    <div class="scale-list" style="margin-top:28px;">
+      <div class="scale-item"><div class="bar" style="height:8px;"></div><div class="lbl">8</div></div>
+      <div class="scale-item"><div class="bar" style="height:16px;"></div><div class="lbl">16</div></div>
+      <div class="scale-item"><div class="bar" style="height:24px;"></div><div class="lbl">24</div></div>
+      <div class="scale-item"><div class="bar" style="height:32px;"></div><div class="lbl">32</div></div>
+      <div class="scale-item"><div class="bar" style="height:48px;"></div><div class="lbl">48</div></div>
+      <div class="scale-item"><div class="bar" style="height:64px;"></div><div class="lbl">64</div></div>
+      <div class="scale-item"><div class="bar" style="height:96px;"></div><div class="lbl">96</div></div>
+    </div>
+  </section>
+
+  <section id="components">
+    <h2 class="sec-title">04 — Components</h2>
+    <p class="sec-note">Functional pieces pulled directly from the homepage: top navigation, monogram mark, image card, link button and the discipline ticker.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="cap">Navigation bar</div>
+        <div class="nav-demo">
+          <div class="lg">RENUKA SAVANGIKAR</div>
+          <div class="lk">WORK . ABOUT . CONTACT</div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Monogram mark</div>
+        <div class="badge-circle">RS</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Image card + caption link</div>
+        <div class="img-card">
+          <div class="ph">[ project image ]</div>
+          <div class="cap-row">
+            <span class="btn-link">View Work <span class="arrow">→</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Social / accent icon stack</div>
+        <div class="icon-row">
+          <div class="label-pill">Follow on</div>
+          <span class="ic star">★</span>
+          <span class="ic tri">▲</span>
+          <span class="ic pen">✎</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;">
+      <div class="cap" style="font-family:var(--mono); font-size:11px; color:var(--label); margin-bottom:10px; text-transform:uppercase;">Discipline ticker (marquee)</div>
+      <div class="marquee-demo">
+        <div class="track">GRAPHIC DESIGN . INDUSTRIAL DESIGN . PRODUCT DESIGN . UI / UX DESIGN . GRAPHIC DESIGN . INDUSTRIAL DESIGN . PRODUCT DESIGN . UI / UX DESIGN .</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="motion">
+    <h2 class="sec-title">05 — Motion</h2>
+    <p class="sec-note">Motion is restrained: a continuously scrolling ticker at the page foot, subtle hover-underline on links, and an optional soft pulse on live status accents. No entrance animation on the hero — it should feel static and confident.</p>
+    <div class="motion-card">
+      <div class="pulse-dot"></div>
+      <div class="mlabel">accent-pulse · 1.8s ease-in-out infinite · used sparingly, e.g. availability dot</div>
+    </div>
+  </section>
+
+  <section id="patterns">
+    <h2 class="sec-title">06 — Page Patterns</h2>
+    <p class="sec-note">Recurring full-page layouts seen across About, Contact, Work and Case Study screens. Headings consistently pair a black sans word with an italic serif second word ("About Me", "Let's Connect").</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="cap">About — portrait pair + copy blocks</div>
+        <div style="display:flex; gap:10px; margin-bottom:14px;">
+          <div class="ph" style="height:110px; width:60%;">[ portrait ]</div>
+          <div class="ph" style="height:110px; width:40%;">[ texture ]</div>
+        </div>
+        <div class="type-sample h2s" style="font-size:18px;">About <span class="italic" style="font-size:18px;">Me</span></div>
+        <div class="body" style="font-size:12px; color:var(--label); margin-top:8px;">👋 Intro line, then emoji-led subheads (🔑 Key Competencies, 🛠 Toolkit) above uppercase tracked body copy.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Contact — form + tiled message wall</div>
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+          <div style="flex:1;">
+            <div class="label" style="font-size:10px; margin-bottom:8px;">Let's <span class="italic" style="font-size:14px;">Connect</span></div>
+            <div style="border-bottom:1px solid var(--ink); font-size:11px; color:var(--label); padding:4px 0; margin-bottom:8px;">Name</div>
+            <div style="border-bottom:1px solid var(--ink); font-size:11px; color:var(--label); padding:4px 0; margin-bottom:8px;">Email</div>
+            <div style="background:var(--ink); color:#fff; text-align:center; font-size:11px; font-weight:700; padding:8px; border-radius:2px;">Send</div>
+          </div>
+          <div style="flex:1; background:var(--ink); color:#fff; height:90px; display:flex; align-items:center; justify-content:center; font-family:var(--serif-italic); font-style:italic; font-size:13px; text-align:center;">Love to<br>Hear from You</div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Work grid — tinted thumbnail tiles</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div class="ph" style="height:70px; background:linear-gradient(0deg, rgba(226,85,79,.55), rgba(226,85,79,.55)), repeating-linear-gradient(45deg,#cfcdc6 0 8px,#e3e1da 8px 16px); color:#fff;">UI/UX</div>
+          <div class="ph" style="height:70px;">[ product render ]</div>
+          <div class="ph" style="height:70px;">[ product render ]</div>
+          <div class="ph" style="height:70px;">[ environment ]</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Tiles tagged by discipline (UI/UX, Industrial, Product). One tile per case study, hover applies a flat colour tint over the photo with category label top-left.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Case study — meta block</div>
+        <table class="tokens" style="font-size:11px;">
+          <tr><td style="padding:4px 8px; font-weight:700;">Project Type</td><td style="padding:4px 8px;">End-to-end App + Branding</td></tr>
+          <tr><td style="padding:4px 8px; font-weight:700;">Role</td><td style="padding:4px 8px;">UX/UI + Brand Designer</td></tr>
+          <tr><td style="padding:4px 8px; font-weight:700;">Tools</td><td style="padding:4px 8px;">Figma, Illustrator, Notion</td></tr>
+        </table>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Bold uppercase label : value rows. A 4-up "Research / Refine / Ideate / Results" process strip uses italic serif sub-headers with bullet copy beneath, marked by a ✦ diamond glyph.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Dark section banner</div>
+        <div style="background:#4d4d4d; color:#fff; padding:18px; text-align:center; font-weight:700; font-size:14px;">Post – COVID Handicraft Industry</div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Full-bleed mid-grey (#4D4D4D) banners interrupt the page to mark a new narrative beat within a case study; white bold sans text, centered.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Inline hand-drawn illustration</div>
+        <div class="ph" style="height:80px; background:#fff; border:1px dashed var(--line-soft);">[ sketch-style figure / chart ]</div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Loose pencil-sketch illustrations (questioning figure, declining bar chart) used as informal data visuals inside case studies — a deliberate hand-made counterpoint to the clean grid.</div>
+      </div>
+      <div class="comp-card">
+        <div class="cap">Filter tabs — work grid</div>
+        <div style="font-family:var(--sans); font-weight:600; font-size:11px; letter-spacing:.06em; text-align:center; color:var(--label);">
+          ALL . <span style="color:#b9b7af;">CRAFT</span> . DUOCARE . GAMESTER . HEALTHPLUS . SHARK VACUUM
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Centred, dot-separated uppercase tab list above the work grid. Active filter renders muted/light grey rather than highlighted — inactive state is the bold default, selected state recedes.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Footer — gradient band</div>
+        <div style="background:var(--grad); padding:18px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="color:#fff; font-size:10px; font-weight:600;">RENUKA.SAVANGIKAR@GMAIL.COM</span>
+          <span style="border:1px solid #fff; color:#fff; font-family:var(--serif-italic); font-style:italic; font-size:12px; padding:8px 18px; border-radius:2px;">Let's Collaborate</span>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">The full gradient (not just the pill bar) becomes the footer's full-bleed background. White text/icons sit directly on it; the CTA is an outlined ghost button, never filled.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokens">
+    <h2 class="sec-title">07 — Token Reference (Website)</h2>
+    <table class="tokens">
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      <tr><td>color.ink</td><td class="mono">#161616</td><td>Type, rules, icons (default)</td></tr>
+      <tr><td>color.paper</td><td class="mono">#F2F1EE</td><td>Page background</td></tr>
+      <tr><td>color.paper-2</td><td class="mono">#FFFFFF</td><td>Nav bar, cards</td></tr>
+      <tr><td>color.coral</td><td class="mono">#E2554F</td><td>Accent / star icon / gradient start</td></tr>
+      <tr><td>color.amber</td><td class="mono">#E8B23D</td><td>Accent / triangle icon / gradient mid</td></tr>
+      <tr><td>color.teal</td><td class="mono">#3F8F95</td><td>Accent / pencil icon / eyebrow text / gradient end</td></tr>
+      <tr><td>font.display</td><td class="mono">Archivo Black</td><td>H1 headline word ("Blending")</td></tr>
+      <tr><td>font.accent</td><td class="mono">Playfair Display Italic</td><td>Emphasised phrase</td></tr>
+      <tr><td>font.body</td><td class="mono">Archivo (400/600/700)</td><td>Nav, labels, body, buttons</td></tr>
+      <tr><td>font.mono</td><td class="mono">Space Mono</td><td>Year stamp, micro-labels</td></tr>
+      <tr><td>radius.pill</td><td class="mono">27px</td><td>Gradient bar, badges</td></tr>
+      <tr><td>border.rule</td><td class="mono">1–2px solid #161616</td><td>Section dividers, nav border</td></tr>
+      <tr><td>space.section</td><td class="mono">64–96px</td><td>Vertical rhythm between sections</td></tr>
+      <tr><td>color.banner-grey</td><td class="mono">#4D4D4D</td><td>Full-bleed dark narrative banners in case studies</td></tr>
+      <tr><td>color.craft-orange</td><td class="mono">#E2722A</td><td>Project-specific brand colour (Craft app), used as image overlay tint</td></tr>
+      <tr><td>form.field</td><td class="mono">underline only, no border-box</td><td>Name / Email / Country / Message inputs</td></tr>
+      <tr><td>form.button</td><td class="mono">solid ink fill, white text, 2px radius</td><td>Send / primary submit</td></tr>
+      <tr><td>pattern.tile-overlay</td><td class="mono">flat colour @ ~55% opacity over photo</td><td>Work grid thumbnails, category label top-left</td></tr>
+      <tr><td>pattern.process-strip</td><td class="mono">4-col, italic serif sub-head + bullets</td><td>Case study Research/Refine/Ideate/Results</td></tr>
+      <tr><td>glyph.diamond</td><td class="mono">✦</td><td>Marks start of a process strip</td></tr>
+      <tr><td>illustration.sketch</td><td class="mono">loose pencil line art, b/w</td><td>Informal data visuals inside case studies</td></tr>
+      <tr><td>footer.bg</td><td class="mono">full gradient, full-bleed</td><td>Site footer background</td></tr>
+      <tr><td>cta.ghost</td><td class="mono">1px white outline, transparent fill</td><td>"Let's Collaborate" footer CTA</td></tr>
+      <tr><td>filter.active</td><td class="mono">#B9B7AF (muted)</td><td>Selected work-grid filter tab (inverted emphasis)</td></tr>
+    </table>
+  </section>
+
+  <section id="pdf-divider" style="margin:96px 0 48px; text-align:center;">
+    <div style="font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--label); text-transform:uppercase; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); padding:14px 0;">PART TWO — PORTFOLIO PDF / SLIDE FORMAT</div>
+    <p class="sec-note" style="margin:18px auto 0; text-align:left;">A separate, print-oriented system used for the downloadable Industrial Design portfolio (16:9 slides). Shares the same paper/ink/gradient palette as the website but drops the italic serif entirely in favour of a single bold grotesk, and trades the sharp gradient pill for a soft blurred gradient mark. Treat the two systems independently — do not mix the website's italic headline style into slide titles.</p>
+  </section>
+
+  <section id="pdf-type">
+    <h2 class="sec-title">08 — PDF Typography</h2>
+    <p class="sec-note">One typeface family carries the entire deck: a rounded-grotesk (Poppins/Helvetica-Now style) at three weights. No serif, no italics — a deliberate contrast to the website's "About Me" pairing.</p>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--sans); font-weight:800; font-size:48px;">Problem</div>
+      <div class="type-meta"><span class="role">Slide title / Bold 800</span>40–52px, short underline rule beneath, top-left aligned</div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--sans); font-weight:500; font-size:20px;">Industrial Vacuum Cleaner</div>
+      <div class="type-meta"><span class="role">Title subhead / Medium 500</span>16–20px, sits inline right of the bold title</div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--sans); font-weight:600; font-size:16px;">Brief / Internal Study / Aim</div>
+      <div class="type-meta"><span class="role">Section label / Semibold 600</span>16–18px, underlined rule optional</div>
+    </div>
+    <div class="type-sample" style="font-family:var(--sans); font-weight:400; font-size:14px; padding:18px 0; border-bottom:1px solid var(--line-soft);">Body copy explaining process, decisions and rationale — Regular 400 at 13–14px, left-aligned, generous line height, grey-black rather than pure ink.</div>
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--sans); font-weight:500; font-size:12px;">Industrial Design · 01 · Renuka Savangikar</div>
+      <div class="type-meta"><span class="role">Footer metadata / Medium 500</span>10–11px, three-column split: category / page no. / name</div>
+    </div>
+  </section>
+
+  <section id="pdf-color">
+    <h2 class="sec-title">09 — PDF Colour &amp; Mark</h2>
+    <p class="sec-note">Same paper/ink base as the website. The signature gradient returns here as a soft, heavily-blurred vertical blob rather than a hard-edged pill — used only on cover and closing slides.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="fill" style="background:#ececea;"></div><div class="meta"><div class="nm">Slide paper</div><div class="hx">#ECECEA</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#ffffff; border-bottom:1px solid var(--line-soft);"></div><div class="meta"><div class="nm">Content paper</div><div class="hx">#FFFFFF</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#2b2b2b;"></div><div class="meta"><div class="nm">Ink / title</div><div class="hx">#2B2B2B</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#8a8a8a;"></div><div class="meta"><div class="nm">Body grey</div><div class="hx">#8A8A8A</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#4d4d4d;"></div><div class="meta"><div class="nm">Dark slide bg</div><div class="hx">#4D4D4D</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#000000;"></div><div class="meta"><div class="nm">Black slide bg</div><div class="hx">#000000</div></div></div>
+    </div>
+    <div style="margin-top:24px; height:200px; width:130px; border-radius:50%/18%; filter:blur(28px); background:conic-gradient(from 180deg at 50% 0%, #c4144f, #d6534f, #e8b23d, #2f8f6f, #2a7a8f); opacity:.9;"></div>
+    <div class="gradient-label">Cover/closing mark — tall blurred gradient blob (magenta → coral → amber → teal-green), heavy Gaussian blur, never used for text or buttons in this format</div>
+  </section>
+
+  <section id="pdf-layouts">
+    <h2 class="sec-title">10 — PDF Slide Layouts</h2>
+    <p class="sec-note">A small set of repeating templates covers the whole deck: cover, contents grid, project title, problem/brief split, image-heavy detail grid, and a full-bleed dark "final render" slide.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="cap">Cover / closing slide</div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; height:90px;">
+          <div style="font-family:var(--sans); font-weight:800; font-size:22px;">Portfolio</div>
+          <div style="height:80px; width:30px; border-radius:50%/16%; filter:blur(10px); background:conic-gradient(from 180deg, #c4144f, #e8b23d, #2f8f6f);"></div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Logo monogram top-left, bold title bottom-right, blurred gradient mark top-right, footer rule below.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Contents grid</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+          <div class="ph" style="height:46px;">Shark</div>
+          <div class="ph" style="height:46px;">Controller</div>
+          <div class="ph" style="height:46px;">Styler</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Each thumbnail has an underlined label above it; clicking implies navigation. 3-column, 2-row grid for 6 projects.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Project title slide</div>
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="flex:1;">
+            <div style="font-family:var(--sans); font-weight:800; font-size:20px;">Shark</div>
+            <div style="font-size:10px; color:var(--label); margin-top:6px;">Individual Project<br>Duration: 16 Weeks</div>
+          </div>
+          <div class="ph" style="height:70px; flex:2;">[ hero render ]</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Title + meta (left, ~25% width) beside one large hero product render (right, ~75%).</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Problem / Brief split</div>
+        <div style="display:flex; gap:14px;">
+          <div class="ph" style="height:70px; flex:2;">[ context photo, annotated ]</div>
+          <div style="flex:1; font-size:11px; color:var(--label);"><strong style="color:var(--ink); font-size:13px;">Brief</strong><br>Short paragraph stating the design problem.</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Large annotated photo (hand-drawn arrows/labels in white) on the left; concise Brief block on the right.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Detail callout grid</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div class="ph" style="height:50px;">[ feature ]</div>
+          <div class="ph" style="height:50px;">[ feature ]</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">2×2 or 2×N grid of close-up shots, each with a plain caption beneath (e.g. "Speed Controls", "Built-in Power Cord") — no icons, just label + image.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Final render — full bleed dark</div>
+        <div style="background:#000; color:#fff; height:70px; display:flex; align-items:flex-start; padding:10px;">
+          <div style="font-weight:800; font-size:16px;">Final Render</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:8px;">Single dramatic lifestyle/studio render fills the frame; white bold title top-left only, no other UI. Marks the end of each project's narrative.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pdf-tokens">
+    <h2 class="sec-title">11 — PDF Token Reference</h2>
+    <table class="tokens">
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      <tr><td>pdf.bg.slide</td><td class="mono">#ECECEA</td><td>Cover, contents, connect slides</td></tr>
+      <tr><td>pdf.bg.content</td><td class="mono">#FFFFFF</td><td>Project / problem / detail slides</td></tr>
+      <tr><td>pdf.ink</td><td class="mono">#2B2B2B</td><td>Titles, body text</td></tr>
+      <tr><td>pdf.grey</td><td class="mono">#8A8A8A</td><td>Secondary/meta text</td></tr>
+      <tr><td>pdf.font</td><td class="mono">Single bold grotesk (e.g. Poppins/Helvetica Now), wt 400/500/600/800</td><td>Entire deck, no serif or italic</td></tr>
+      <tr><td>pdf.title-rule</td><td class="mono">2–3px solid ink, ~80px wide</td><td>Short underline beneath every slide title</td></tr>
+      <tr><td>pdf.mark</td><td class="mono">tall blurred gradient blob</td><td>Cover &amp; closing slide only</td></tr>
+      <tr><td>pdf.monogram</td><td class="mono">circular "RS" badge, top-right</td><td>Repeats on every slide</td></tr>
+      <tr><td>pdf.footer</td><td class="mono">hairline rule + 3-col text (category / page / name)</td><td>Every slide footer</td></tr>
+      <tr><td>pdf.annotation</td><td class="mono">hand-drawn white line art over photo</td><td>Problem-statement callouts</td></tr>
+    </table>
+  </section>
+
+  <section id="print-divider" style="margin:96px 0 48px; text-align:center;">
+    <div style="font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--label); text-transform:uppercase; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); padding:14px 0;">PART THREE — CV &amp; BUSINESS CARD</div>
+    <p class="sec-note" style="margin:18px auto 0; text-align:left;">Print collateral for the mini-portfolio pack. Reuses the website's three-colour gradient and circular RS monogram, but applies the gradient as a solid, sharp-edged bar or full-bleed card face rather than the website's pill or the PDF's blurred blob — a third distinct treatment of the same palette.</p>
+  </section>
+
+  <section id="cv">
+    <h2 class="sec-title">12 — CV / Resume Layout</h2>
+    <p class="sec-note">Single A4 page, white background, dense and functional. The gradient appears once, as a flat top band — the only colour on the page.</p>
+
+    <div class="comp-card" style="max-width:480px;">
+      <div style="height:14px; background:var(--grad); margin:-28px -28px 18px;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div style="font-family:var(--sans); font-weight:700; font-size:18px;">Renuka Savangikar</div>
+          <div style="font-size:11px; color:var(--label); margin-top:4px;">Industrial Design Student<br>Teesside University</div>
+        </div>
+        <div class="badge-circle" style="width:36px; height:36px; font-size:9px;">RS</div>
+      </div>
+      <div style="margin-top:18px; font-family:var(--sans); font-weight:700; font-size:13px; border-bottom:1px solid var(--line-soft); padding-bottom:6px;">Experience</div>
+      <div style="font-size:10px; color:var(--label); margin-top:8px; line-height:1.6;">Role title, organisation — dates<br>One or two lines describing scope and outcome.</div>
+      <div style="margin-top:14px; font-size:9px; color:var(--label); border-top:1px solid var(--line-soft); padding-top:8px;">🌐 site · ✉ email · in LinkedIn · ☎ phone</div>
+    </div>
+    <div class="body" style="font-size:11px; color:var(--label); margin-top:14px;">Heading hierarchy: Name (700, 16–18px) → role/institution (regular, 11px, muted) → section labels (700, 12–13px, underlined hairline) → entries (regular, 10–11px). Contact row sits bottom-left as a stacked icon list, monogram top-right mirrors every other artefact in the system.</div>
+  </section>
+
+  <section id="card">
+    <h2 class="sec-title">13 — Business Card</h2>
+    <p class="sec-note">Two-sided card, standard landscape format. Front is the gradient at full bleed with the circle-enclosed monogram; back is plain white/grey with name, title and contact details.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="cap">Front — gradient face</div>
+        <div style="aspect-ratio:1.75/1; border-radius:12px; background:var(--grad); display:flex; align-items:flex-end; justify-content:flex-start; padding:14px;">
+          <div style="width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(255,255,255,.9); display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--sans); font-weight:600; font-size:12px;">RS</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:10px;">Full-bleed diagonal gradient (coral top-left → amber centre → teal bottom-right), rounded corners, monogram in a thin outlined circle bottom-left — no text on this face.</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="cap">Back — contact face</div>
+        <div style="aspect-ratio:1.75/1; border-radius:12px; border:1px solid var(--line-soft); padding:14px; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-family:var(--sans); font-weight:700; font-size:13px;">Renuka Savangikar</div>
+          <div style="height:2px; width:60%; background:var(--grad); margin:6px 0;"></div>
+          <div style="font-size:9px; color:var(--label); line-height:1.5;">Product Design Student<br>Teesside University<br>renuka.savangikar@gmail.com</div>
+        </div>
+        <div class="body" style="font-size:11px; color:var(--label); margin-top:10px;">White or pale-grey card stock, name in bold sans, a thin gradient rule (not full pill) separates name from details, contact block in muted grey beneath.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="print-tokens">
+    <h2 class="sec-title">14 — CV &amp; Card Token Reference</h2>
+    <table class="tokens">
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      <tr><td>cv.topband</td><td class="mono">14px flat gradient bar, full width</td><td>Only colour element on the CV page</td></tr>
+      <tr><td>cv.heading</td><td class="mono">700 weight, 16–18px</td><td>Name</td></tr>
+      <tr><td>cv.section-label</td><td class="mono">700 weight, 12–13px, hairline underline</td><td>"Experience" etc.</td></tr>
+      <tr><td>card.radius</td><td class="mono">10–12px</td><td>Business card corners</td></tr>
+      <tr><td>card.front-bg</td><td class="mono">full-bleed diagonal gradient</td><td>Front face, sharp-edged (not blurred)</td></tr>
+      <tr><td>card.monogram</td><td class="mono">outlined circle, 1.5px stroke, white on gradient</td><td>Front face mark</td></tr>
+      <tr><td>card.back-rule</td><td class="mono">2px gradient line, partial width</td><td>Separates name from contact details on back</td></tr>
+    </table>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <span>RENUKA SAVANGIKAR — DESIGN SYSTEM</span>
+  <span>EXTRACTED FROM SOURCE SCREENSHOT · 2026</span>
+</footer>
+
+</body>
+</html>
+
